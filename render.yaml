@@ -1,9 +1,7 @@
 services:
   - type: web
     name: area-membros
-    env: php
+    env: docker
     plan: free
     branch: main
-    buildCommand: ""
-    startCommand: ""
     rootDir: .
