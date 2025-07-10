@@ -3,5 +3,7 @@ services:
     name: area-membros
     env: php
     plan: free
+    branch: main
     buildCommand: ""
     startCommand: ""
+    rootDir: .
