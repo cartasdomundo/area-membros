@@ -1,15 +1,15 @@
-<?php
-$host = 'db.gbxncpcjthsbtuytcsdr.supabase.co';
-$db   = 'postgres';
-$user = 'postgres';
-$pass = 'Bandos2023*'; // Substitua aqui pela senha que você criou no Supabase
-$port = 5432;
+require_once 'dotenv.php';
+
+$host = getenv('DB_HOST');
+$db   = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASS');
+$port = getenv('DB_PORT');
 
 try {
-    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$db", $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$db", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Erro na conexão com o Supabase: " . $e->getMessage());
+    error_log($e->getMessage());
+    die("Erro ao conectar ao banco de dados.");
 }
